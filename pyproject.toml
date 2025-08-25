@@ -1,0 +1,46 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "claude-nexus"
+version = "0.1.0"
+description = "Central nexus for development tool orchestration in the Claude ecosystem"
+readme = "README.md"
+authors = [{name = "Malte Sussdorff"}]
+license = {text = "MIT"}
+requires-python = ">=3.8"
+dependencies = [
+    "click>=8.1.0",
+    "pyyaml>=6.0",
+    "rich>=13.0",
+    "gitpython>=3.1.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-cov>=4.1.0",
+    "pytest-mock>=3.11.0",
+    "black>=23.0",
+    "ruff>=0.1.0",
+]
+
+[project.scripts]
+claude-nexus = "nexus.cli:main"
+cnx = "nexus.cli:main"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[tool.coverage.run]
+source = ["nexus"]
+
+[tool.black]
+line-length = 88
+target-version = ["py38"]
+
+[tool.ruff]
+line-length = 88
+select = ["E", "F", "I"]
